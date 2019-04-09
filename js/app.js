@@ -36,6 +36,16 @@ function handleVoteClick(e) {
       }
     });
     totalClicks++;
+    if (totalClicks === 25) {
+      let results = document.getElementById('results');
+      images.forEach((image) => {
+        console.log(image);
+        let liEl = document.createElement('li');
+        console.log(liEl);
+        liEl.textContent = `${image.name}: ${image.clicks} votes`;
+        results.appendChild(liEl);
+      });
+    }
   }
   console.log(totalClicks);
   console.log(images);
