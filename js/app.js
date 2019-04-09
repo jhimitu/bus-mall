@@ -1,6 +1,8 @@
 'use strict';
 
 let images = [];
+let display = document.getElementById('products');
+let products = display.getElementsByTagName('IMG');
 
 function ProductImage(imgName, filetype) {
   this.name = imgName;
@@ -17,20 +19,22 @@ function generateRandomImages() {
   for (let i = 0; i < 3; i++) {
     let index = Math.floor(Math.random() * images.length);
     console.log(index);
-
     threeRandomImages.push(images[index].filepath);
   }
   console.log('threeRandom: ', threeRandomImages);
-
-  let display = document.getElementById('products');
-
-  threeRandomImages.forEach((image) => {
-    let product = document.createElement('IMG');
-    product.setAttribute('src', `${image}`);
-    product.setAttribute('class', 'product-image');
-    display.appendChild(product);
-  });
+  console.log('display: ', display);
+  console.log('products: ', products);
+  for (let i = 0; i < products.length; i++) {
+    console.log(products[i]);
+    products[i].setAttribute('src', threeRandomImages[i]);
+  }
 }
+
+function handleVoteClick(e) {
+  console.log(e.target.currentSrc);
+  generateRandomImages();
+}
+
 
 new ProductImage('bag', 'jpg');
 new ProductImage('banana', 'jpg');
@@ -55,5 +59,6 @@ new ProductImage('wine-glass', 'jpg');
 
 
 generateRandomImages();
+display.addEventListener('click', handleVoteClick);
 
 console.log(images);
