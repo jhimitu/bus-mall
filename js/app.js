@@ -1,8 +1,7 @@
 'use strict';
 
 let images = [];
-let currentDisplay = [];
-console.log(currentDisplay);
+let currentThreeImages = [];
 let totalClicks = 0;
 let display = document.getElementById('products');
 let products = display.getElementsByTagName('IMG');
@@ -13,27 +12,24 @@ function ProductImage(imgName, filetype) {
   this.filepath = `img/${imgName}.${filetype}`;
   this.clicks = 0;
   this.views = 0;
-  this.justSeen = false;
   images.push(this);
 }
 
 function generateRandomImages() {
-  let threeRandomImages = [];
+  let threeNewImages = [];
 
-  for (let i = 0; threeRandomImages.length < 3; i++) {
+  for (let i = 0; threeNewImages.length < 3; i++) {
     let index = Math.floor(Math.random() * images.length);
-    if(!threeRandomImages.includes(images[index].filepath) && 
-       !currentDisplay.includes(images[index].filepath)) {
-      threeRandomImages.push(images[index].filepath);
+    if(!threeNewImages.includes(images[index].filepath) && 
+       !currentThreeImages.includes(images[index].filepath)) {
+      threeNewImages.push(images[index].filepath);
       images[index].views++;
     }
   }
   for (let i = 0; i < products.length; i++) {
-    products[i].setAttribute('src', threeRandomImages[i]);
+    products[i].setAttribute('src', threeNewImages[i]);
   }
-  console.log(threeRandomImages);
-  console.log(currentDisplay);
-  currentDisplay = threeRandomImages.slice();
+  currentThreeImages = threeNewImages.slice();
 }
 
 function handleVoteClick(e) {
@@ -57,10 +53,7 @@ function handleVoteClick(e) {
       });
     }
   }
-  console.log(totalClicks);
-  console.log(images);
 }
-
 
 new ProductImage('bag', 'jpg');
 new ProductImage('banana', 'jpg');
@@ -83,8 +76,5 @@ new ProductImage('usb', 'gif');
 new ProductImage('water-can', 'jpg');
 new ProductImage('wine-glass', 'jpg');
 
-
 generateRandomImages();
 display.addEventListener('click', handleVoteClick);
-
-
