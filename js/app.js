@@ -1,6 +1,8 @@
 'use strict';
 
 let images = [];
+let currentDisplay = [];
+console.log(currentDisplay);
 let totalClicks = 0;
 let display = document.getElementById('products');
 let products = display.getElementsByTagName('IMG');
@@ -28,6 +30,9 @@ function generateRandomImages() {
   for (let i = 0; i < products.length; i++) {
     products[i].setAttribute('src', threeRandomImages[i]);
   }
+  console.log(threeRandomImages);
+  console.log(currentDisplay);
+  currentDisplay = threeRandomImages.slice();
 }
 
 function handleVoteClick(e) {
