@@ -1,6 +1,8 @@
 'use strict';
 
 let images = [];
+let currentDisplay = [];
+console.log(currentDisplay);
 let totalClicks = 0;
 let display = document.getElementById('products');
 let products = display.getElementsByTagName('IMG');
@@ -20,7 +22,8 @@ function generateRandomImages() {
 
   for (let i = 0; threeRandomImages.length < 3; i++) {
     let index = Math.floor(Math.random() * images.length);
-    if(!threeRandomImages.includes(images[index].filepath)) {
+    if(!threeRandomImages.includes(images[index].filepath) && 
+       !currentDisplay.includes(images[index].filepath)) {
       threeRandomImages.push(images[index].filepath);
       images[index].views++;
     }
@@ -28,6 +31,9 @@ function generateRandomImages() {
   for (let i = 0; i < products.length; i++) {
     products[i].setAttribute('src', threeRandomImages[i]);
   }
+  console.log(threeRandomImages);
+  console.log(currentDisplay);
+  currentDisplay = threeRandomImages.slice();
 }
 
 function handleVoteClick(e) {
