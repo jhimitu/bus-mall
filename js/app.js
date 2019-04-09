@@ -18,22 +18,21 @@ function generateRandomImages() {
 
   for (let i = 0; i < 3; i++) {
     let index = Math.floor(Math.random() * images.length);
-    console.log(index);
     threeRandomImages.push(images[index].filepath);
     images[index].views++;
   }
-  console.log('threeRandom: ', threeRandomImages);
-  console.log('display: ', display);
-  console.log('products: ', products);
   for (let i = 0; i < products.length; i++) {
-    console.log(products[i]);
     products[i].setAttribute('src', threeRandomImages[i]);
   }
 }
 
 function handleVoteClick(e) {
-  console.log(e.target.currentSrc);
   generateRandomImages();
+  images.forEach((image) => {
+    if (`${e.target.baseURI}${image.filepath}` === e.target.currentSrc) {
+      image.clicks++;
+    }
+  });
   console.log(images);
 }
 
@@ -62,5 +61,3 @@ new ProductImage('wine-glass', 'jpg');
 
 generateRandomImages();
 display.addEventListener('click', handleVoteClick);
-
-console.log(images);
