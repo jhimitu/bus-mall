@@ -20,6 +20,7 @@ function generateRandomImages() {
     let index = Math.floor(Math.random() * images.length);
     console.log(index);
     threeRandomImages.push(images[index].filepath);
+    images[index].views++;
   }
   console.log('threeRandom: ', threeRandomImages);
   console.log('display: ', display);
@@ -33,6 +34,7 @@ function generateRandomImages() {
 function handleVoteClick(e) {
   console.log(e.target.currentSrc);
   generateRandomImages();
+  console.log(images);
 }
 
 
