@@ -1,6 +1,7 @@
 'use strict';
 
 let images = [];
+let totalClicks = 0;
 let display = document.getElementById('products');
 let products = display.getElementsByTagName('IMG');
 
@@ -27,12 +28,16 @@ function generateRandomImages() {
 }
 
 function handleVoteClick(e) {
-  generateRandomImages();
-  images.forEach((image) => {
-    if (`${e.target.baseURI}${image.filepath}` === e.target.currentSrc) {
-      image.clicks++;
-    }
-  });
+  if (totalClicks < 25) {
+    generateRandomImages();
+    images.forEach((image) => {
+      if (`${e.target.baseURI}${image.filepath}` === e.target.currentSrc) {
+        image.clicks++;
+      }
+    });
+    totalClicks++;
+  }
+  console.log(totalClicks);
   console.log(images);
 }
 
@@ -61,3 +66,6 @@ new ProductImage('wine-glass', 'jpg');
 
 generateRandomImages();
 display.addEventListener('click', handleVoteClick);
+console.log(totalClicks);
+
+
