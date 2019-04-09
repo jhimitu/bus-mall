@@ -11,6 +11,27 @@ function ProductImage(imgName, filetype) {
   images.push(this);
 }
 
+function generateRandomImages() {
+  let threeRandomImages = [];
+
+  for (let i = 0; i < 3; i++) {
+    let index = Math.floor(Math.random() * images.length);
+    console.log(index);
+
+    threeRandomImages.push(images[index].filepath);
+  }
+  console.log('threeRandom: ', threeRandomImages);
+
+  let display = document.getElementById('products');
+
+  threeRandomImages.forEach((image) => {
+    let product = document.createElement('IMG');
+    product.setAttribute('src', `${image}`);
+    product.setAttribute('class', 'product-image');
+    display.appendChild(product);
+  });
+}
+
 new ProductImage('bag', 'jpg');
 new ProductImage('banana', 'jpg');
 new ProductImage('bathroom', 'jpg');
@@ -32,22 +53,6 @@ new ProductImage('usb', 'gif');
 new ProductImage('water-can', 'jpg');
 new ProductImage('wine-glass', 'jpg');
 
-function generateRandomImages() {
-  let threeRandomImages = [];
-
-  for (let i = 0; i < 3; i++) {
-    threeRandomImages.push(images[Math.floor(Math.random() * images.length)].filepath);
-  }
-  console.log(threeRandomImages);
-
-  let display = document.getElementById('products');
-
-  threeRandomImages.forEach((image) => {
-    let product = document.createElement('IMG');
-    product.setAttribute('src', `${image}`);
-    display.appendChild(product);
-  });
-}
 
 generateRandomImages();
 
