@@ -1,6 +1,9 @@
 'use strict';
 
 let images = [];
+let totalClicks = 0;
+let display = document.getElementById('products');
+let products = display.getElementsByTagName('IMG');
 
 function ProductImage(imgName, filetype) {
   this.name = imgName;
@@ -10,6 +13,34 @@ function ProductImage(imgName, filetype) {
   this.views = 0;
   images.push(this);
 }
+
+function generateRandomImages() {
+  let threeRandomImages = [];
+
+  for (let i = 0; i < 3; i++) {
+    let index = Math.floor(Math.random() * images.length);
+    threeRandomImages.push(images[index].filepath);
+    images[index].views++;
+  }
+  for (let i = 0; i < products.length; i++) {
+    products[i].setAttribute('src', threeRandomImages[i]);
+  }
+}
+
+function handleVoteClick(e) {
+  if (totalClicks < 25) {
+    generateRandomImages();
+    images.forEach((image) => {
+      if (`${e.target.baseURI}${image.filepath}` === e.target.currentSrc) {
+        image.clicks++;
+      }
+    });
+    totalClicks++;
+  }
+  console.log(totalClicks);
+  console.log(images);
+}
+
 
 new ProductImage('bag', 'jpg');
 new ProductImage('banana', 'jpg');
@@ -32,23 +63,9 @@ new ProductImage('usb', 'gif');
 new ProductImage('water-can', 'jpg');
 new ProductImage('wine-glass', 'jpg');
 
-function generateRandomImages() {
-  let threeRandomImages = [];
-
-  for (let i = 0; i < 3; i++) {
-    threeRandomImages.push(images[Math.floor(Math.random() * images.length)].filepath);
-  }
-  console.log(threeRandomImages);
-
-  let display = document.getElementById('products');
-
-  threeRandomImages.forEach((image) => {
-    let product = document.createElement('IMG');
-    product.setAttribute('src', `${image}`);
-    display.appendChild(product);
-  });
-}
 
 generateRandomImages();
+display.addEventListener('click', handleVoteClick);
+console.log(totalClicks);
 
-console.log(images);
+
