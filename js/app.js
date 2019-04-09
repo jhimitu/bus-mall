@@ -17,10 +17,12 @@ function ProductImage(imgName, filetype) {
 function generateRandomImages() {
   let threeRandomImages = [];
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; threeRandomImages.length < 3; i++) {
     let index = Math.floor(Math.random() * images.length);
-    threeRandomImages.push(images[index].filepath);
-    images[index].views++;
+    if(!threeRandomImages.includes(images[index].filepath)) {
+      threeRandomImages.push(images[index].filepath);
+      images[index].views++;
+    }
   }
   for (let i = 0; i < products.length; i++) {
     products[i].setAttribute('src', threeRandomImages[i]);
@@ -36,6 +38,7 @@ function handleVoteClick(e) {
       }
     });
     totalClicks++;
+
     if (totalClicks === 25) {
       let results = document.getElementById('results');
       images.forEach((image) => {
