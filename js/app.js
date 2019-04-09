@@ -22,7 +22,8 @@ function generateRandomImages() {
 
   for (let i = 0; threeRandomImages.length < 3; i++) {
     let index = Math.floor(Math.random() * images.length);
-    if(!threeRandomImages.includes(images[index].filepath)) {
+    if(!threeRandomImages.includes(images[index].filepath) && 
+       !currentDisplay.includes(images[index].filepath)) {
       threeRandomImages.push(images[index].filepath);
       images[index].views++;
     }
