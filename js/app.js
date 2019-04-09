@@ -11,6 +11,7 @@ function ProductImage(imgName, filetype) {
   this.filepath = `img/${imgName}.${filetype}`;
   this.clicks = 0;
   this.views = 0;
+  this.justSeen = false;
   images.push(this);
 }
 
@@ -79,6 +80,5 @@ new ProductImage('wine-glass', 'jpg');
 
 generateRandomImages();
 display.addEventListener('click', handleVoteClick);
-console.log(totalClicks);
 
 
