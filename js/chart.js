@@ -1,13 +1,11 @@
-var imageNames = [];
 var ctx = document.getElementById('chart').getContext('2d');
-console.log('voting scores', votingScores);
 var chart = new Chart(ctx, {
   type: 'bar',
   data: {
       labels: ["bag", "banana", "bathroom", "boots", "breakfast", "bubblegum", "chair", "cthulhu", "dog-duck", "dragon", "pen", "pet-sweep", "scissors", "shark", "sweep", "tauntaun", "unicorn", "usb", "water-can", "wine-glass"],
       datasets: [{
           label: '# of Votes',
-          data: [1, 2, 4, 0, 2, 4, 3, 0, 1, 3, 5, 2, 0, 1, 1, 3, 2, 5, 3, 2],
+          data: [],
           backgroundColor: [
             'rgba(255, 99, 132, 1)',
             'rgba(54, 162, 235, 1)',
@@ -71,6 +69,5 @@ var chart = new Chart(ctx, {
 votingScores.forEach((votingScore) => {
   chart.config.data.datasets[0].data.push(votingScore);
 });
-chart.update();
 
 console.log('chart data', chart.config.data.datasets[0].data);
