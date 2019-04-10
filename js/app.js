@@ -57,6 +57,11 @@ function handleVoteClick(e) {
         votingScores.push(image.clicks);
         console.log('voting scores in app', votingScores);
       });
+      votingScores.forEach((votingScore) => {
+        chart.config.data.datasets[0].data.push(votingScore);
+        console.log('chart data in loop', chart.config.data.datasets[0].data);
+      });
+      chart.update();
     }
   }
 }
