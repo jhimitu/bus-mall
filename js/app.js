@@ -51,11 +51,6 @@ function handleVoteClick(e) {
       productSection.style.display = 'none';
       let results = document.getElementById('results');
       images.forEach((image) => {
-        console.log(image);
-        let liEl = document.createElement('li');
-        console.log(liEl);
-        liEl.textContent = `${image.name}: ${image.clicks} votes`;
-        results.appendChild(liEl);
         votingScores.push(image.clicks);
         console.log('voting scores in app', votingScores);
       });
