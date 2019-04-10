@@ -2,6 +2,7 @@
 
 let images = [];
 let currentThreeImages = [];
+let votingScores = [];
 let totalClicks = 0;
 let display = document.getElementById('products');
 let products = display.getElementsByTagName('IMG');
@@ -50,6 +51,8 @@ function handleVoteClick(e) {
         console.log(liEl);
         liEl.textContent = `${image.name}: ${image.clicks} votes`;
         results.appendChild(liEl);
+        votingScores.push(image.clicks);
+        console.log(votingScores);
       });
     }
   }
@@ -78,3 +81,5 @@ new ProductImage('wine-glass', 'jpg');
 
 generateRandomImages();
 display.addEventListener('click', handleVoteClick);
+
+console.log(chart);
