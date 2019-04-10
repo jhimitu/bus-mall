@@ -6,6 +6,8 @@ let votingScores = [];
 let totalClicks = 0;
 let display = document.getElementById('products');
 let products = display.getElementsByTagName('IMG');
+let chartDisplay = document.getElementById('chart');
+chartDisplay.style.display = 'none';
 
 function ProductImage(imgName, filetype) {
   this.name = imgName;
@@ -44,6 +46,7 @@ function handleVoteClick(e) {
     totalClicks++;
 
     if (totalClicks === 25) {
+      chartDisplay.style.display = '';
       let results = document.getElementById('results');
       images.forEach((image) => {
         console.log(image);
@@ -52,7 +55,7 @@ function handleVoteClick(e) {
         liEl.textContent = `${image.name}: ${image.clicks} votes`;
         results.appendChild(liEl);
         votingScores.push(image.clicks);
-        console.log(votingScores);
+        console.log('voting scores in app', votingScores);
       });
     }
   }
@@ -81,5 +84,3 @@ new ProductImage('wine-glass', 'jpg');
 
 generateRandomImages();
 display.addEventListener('click', handleVoteClick);
-
-console.log(chart);
