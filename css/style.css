@@ -1,3 +1,7 @@
+* {
+  text-align: center;
+}
+
 section div:nth-child(1) img {
   width: 315px;
   height: 215px;
