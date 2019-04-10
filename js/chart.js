@@ -1,3 +1,5 @@
+'use strict';
+
 var ctx = document.getElementById('chart').getContext('2d');
 var chart = new Chart(ctx, {
   type: 'bar',
@@ -65,5 +67,3 @@ var chart = new Chart(ctx, {
       }
   }
 });
-
-console.log('chart data', chart.config.data.datasets[0].data);
