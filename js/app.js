@@ -49,7 +49,6 @@ function handleVoteClick(e) {
     if (totalClicks === 25) {
       chartDisplay.style.display = '';
       productSection.style.display = 'none';
-      let results = document.getElementById('results');
       images.forEach((image) => {
         votingScores.push(image.clicks);
         console.log('voting scores in app', votingScores);
