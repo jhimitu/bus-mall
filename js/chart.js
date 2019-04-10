@@ -66,8 +66,4 @@ var chart = new Chart(ctx, {
   }
 });
 
-votingScores.forEach((votingScore) => {
-  chart.config.data.datasets[0].data.push(votingScore);
-});
-
 console.log('chart data', chart.config.data.datasets[0].data);

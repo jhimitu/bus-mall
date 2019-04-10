@@ -7,6 +7,7 @@ let totalClicks = 0;
 let display = document.getElementById('products');
 let products = display.getElementsByTagName('IMG');
 let chartDisplay = document.getElementById('chart');
+let productSection = document.getElementById('product-section');
 chartDisplay.style.display = 'none';
 
 function ProductImage(imgName, filetype) {
@@ -47,6 +48,7 @@ function handleVoteClick(e) {
 
     if (totalClicks === 25) {
       chartDisplay.style.display = '';
+      productSection.style.display = 'none';
       let results = document.getElementById('results');
       images.forEach((image) => {
         console.log(image);
@@ -57,6 +59,11 @@ function handleVoteClick(e) {
         votingScores.push(image.clicks);
         console.log('voting scores in app', votingScores);
       });
+      votingScores.forEach((votingScore) => {
+        chart.config.data.datasets[0].data.push(votingScore);
+        console.log('chart data in loop', chart.config.data.datasets[0].data);
+      });
+      chart.update();
     }
   }
 }
