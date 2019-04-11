@@ -53,6 +53,8 @@ function handleVoteClick(e) {
         votingScores.push(image.clicks);
         console.log('voting scores in app', votingScores);
       });
+      window.localStorage.setItem('votingResults', JSON.stringify(votingScores));
+      window.localStorage.setItem('totalClicks', totalClicks);
       votingScores.forEach((votingScore) => {
         chart.config.data.datasets[0].data.push(votingScore);
         console.log('chart data in loop', chart.config.data.datasets[0].data);
