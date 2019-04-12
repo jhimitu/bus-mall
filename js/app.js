@@ -54,10 +54,13 @@ function handleVoteClick(e) {
         console.log('voting scores in app', votingScores);
       });
       window.localStorage.setItem('votingResults', JSON.stringify(votingScores));
+      window.localStorage.setItem('clicks', totalClicks);
       votingScores.forEach((votingScore) => {
         chart.config.data.datasets[0].data.push(votingScore);
         console.log('chart data in loop', chart.config.data.datasets[0].data);
       });
+      let votesInStorage = window.localStorage.getItem('clicks');
+      window.localStorage.setItem('clicks', totalClicks + JSON.parse(votesInStorage));
       chart.update();
     }
   }
